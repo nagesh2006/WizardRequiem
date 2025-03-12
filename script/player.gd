@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 600.0
 const JUMP_VELOCITY = -1900.0
 
+@onready var FIREBALL = preload("res://Assets/scene/fireball.tscn")
 @export var run_multiplier = 1
 
 func _physics_process(delta: float) -> void:
@@ -38,6 +39,9 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+	if Input.is_action_just_pressed("fire"):
+		fire()
+	
 func killPlayer():
 	position =%SpawnPoint.position
 	$AnimatedSprite2D.flip_h = false
@@ -49,3 +53,11 @@ func _on_button_pressed() -> void:
 
 func _on_death_zone_body_entered(body: Node2D) -> void:
 	killPlayer()
+
+func fire():
+	if Input.is_action_just_pressed("fire"):
+		print("fire pressed")
+		var f = FIREBALL.instantiate()
+		f.global_position = global_position
+		get_parent().add_child(f)
+		
