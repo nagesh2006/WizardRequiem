@@ -1,6 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvg4n3y7qxr3h"]
+[gd_scene load_steps=30 format=3 uid="uid://cvg4n3y7qxr3h"]
 
 [ext_resource type="Texture2D" uid="uid://dpbbl6idvl4g7" path="res://sprite/extra/spin_coin_big_strip6.png" id="1_4agwf"]
+[ext_resource type="Texture2D" uid="uid://c1074etu5obgc" path="res://sprite/UI/buttonAR-1.png" id="2_38f7p"]
+[ext_resource type="Texture2D" uid="uid://drbqudafmkkac" path="res://sprite/UI/buttonAR-2.png" id="3_ctgk1"]
+[ext_resource type="Texture2D" uid="uid://ctxgddley6j47" path="res://sprite/UI/buttonAR-3.png" id="4_7rlcx"]
+[ext_resource type="Texture2D" uid="uid://be4rgaye7nkuf" path="res://sprite/UI/button J-1.png" id="6_a0ewx"]
+[ext_resource type="Texture2D" uid="uid://bifmcchh7mpgd" path="res://sprite/UI/button J-2.png" id="7_erk5y"]
+[ext_resource type="Texture2D" uid="uid://cjyswmaogv6e" path="res://sprite/UI/button J-3.png" id="8_35jrp"]
+[ext_resource type="Texture2D" uid="uid://dkku4xjg0vqvs" path="res://sprite/UI/button J-4.png" id="9_g4jf8"]
+[ext_resource type="Texture2D" uid="uid://8cia4bxlna8l" path="res://sprite/UI/button AL-1.png" id="9_wf7j5"]
+[ext_resource type="Texture2D" uid="uid://cogovnew2cgdf" path="res://sprite/UI/buttonAL-2.png" id="10_gx57b"]
+[ext_resource type="Script" path="res://script/menu.gd" id="11_htykj"]
+[ext_resource type="Texture2D" uid="uid://cwko6204pmlyx" path="res://sprite/UI/buttonAL-3.png" id="11_hxbqp"]
+[ext_resource type="Texture2D" uid="uid://bv43hcnnu2c6l" path="res://sprite/UI/button M-1.png" id="12_ajmxr"]
+[ext_resource type="Texture2D" uid="uid://dbjd2ucepcy8l" path="res://sprite/UI/button M-2.png" id="13_x78u4"]
+[ext_resource type="Texture2D" uid="uid://w3yh766pcory" path="res://sprite/UI/Button M-4.png" id="14_6k3n5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mveht"]
 atlas = ExtResource("1_4agwf")
@@ -52,6 +66,44 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_n00qr"]
+frame_0/texture = ExtResource("2_38f7p")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_araj5"]
+frames = 2
+frame_0/texture = ExtResource("3_ctgk1")
+frame_1/texture = ExtResource("4_7rlcx")
+frame_1/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_khcuf"]
+frame_0/texture = ExtResource("6_a0ewx")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_2gh00"]
+frames = 3
+frame_0/texture = ExtResource("7_erk5y")
+frame_1/texture = ExtResource("8_35jrp")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("9_g4jf8")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_f6xv1"]
+frame_0/texture = ExtResource("9_wf7j5")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_gtbjc"]
+frames = 2
+frame_0/texture = ExtResource("10_gx57b")
+frame_1/texture = ExtResource("11_hxbqp")
+frame_1/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_0nqxf"]
+frames = 3
+pause = true
+frame_0/texture = ExtResource("12_ajmxr")
+frame_1/texture = ExtResource("13_x78u4")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("14_6k3n5")
+frame_2/duration = 1.0
+
 [node name="GUI" type="CanvasLayer"]
 
 [node name="coinValue" type="Label" parent="."]
@@ -68,3 +120,47 @@ position = Vector2(1109, 58)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_5ie5j")
 autoplay = "default"
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 32.0
+offset_top = -26.0
+offset_right = 72.0
+offset_bottom = 14.0
+
+[node name="btnRight" type="TouchScreenButton" parent="Buttons"]
+z_index = 7
+position = Vector2(192, 522)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AnimatedTexture_n00qr")
+texture_pressed = SubResource("AnimatedTexture_araj5")
+action = "move_right"
+
+[node name="btnJump" type="TouchScreenButton" parent="Buttons"]
+z_index = 7
+position = Vector2(913, 522)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AnimatedTexture_khcuf")
+texture_pressed = SubResource("AnimatedTexture_2gh00")
+action = "jump"
+
+[node name="btnLeft" type="TouchScreenButton" parent="Buttons"]
+position = Vector2(40, 522)
+scale = Vector2(6, 6)
+texture_normal = SubResource("AnimatedTexture_f6xv1")
+texture_pressed = SubResource("AnimatedTexture_gtbjc")
+action = "move_left"
+visibility_mode = 1
+
+[node name="Button" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 59.0
+offset_right = 29.0
+offset_bottom = 68.0
+scale = Vector2(6, 6)
+icon = SubResource("AnimatedTexture_0nqxf")
+script = ExtResource("11_htykj")
+
+[connection signal="pressed" from="Buttons/Button" to="Buttons/Button" method="_on_pressed"]

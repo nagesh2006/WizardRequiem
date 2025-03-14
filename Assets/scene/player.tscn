@@ -49,16 +49,6 @@
 [ext_resource type="Texture2D" uid="uid://drbn71s3wb1e4" path="res://sprite/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00017.png" id="45_tynj1"]
 [ext_resource type="Texture2D" uid="uid://crey5be1eanms" path="res://sprite/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00018.png" id="46_ccqmq"]
 [ext_resource type="Texture2D" uid="uid://b4jcgn8hieuee" path="res://sprite/BlueWizard/2BlueWizardWalk/Chara_BlueWalk00019.png" id="47_e4pgr"]
-[ext_resource type="Texture2D" uid="uid://d2ip0s2pjqefl" path="res://sprite/UI/button R-1.png" id="49_oh88r"]
-[ext_resource type="Texture2D" uid="uid://dm6rlb8ph28sv" path="res://sprite/UI/button R-2.png" id="50_ket0t"]
-[ext_resource type="Texture2D" uid="uid://ci1ntamtnq0h2" path="res://sprite/UI/button R-3.png" id="51_2dgj8"]
-[ext_resource type="Texture2D" uid="uid://fsf1h7uji1qp" path="res://sprite/UI/Button R-4.png" id="52_76qpd"]
-[ext_resource type="Texture2D" uid="uid://be4rgaye7nkuf" path="res://sprite/UI/button J-1.png" id="53_fxleu"]
-[ext_resource type="Texture2D" uid="uid://bifmcchh7mpgd" path="res://sprite/UI/button J-2.png" id="54_m2yg3"]
-[ext_resource type="Texture2D" uid="uid://cjyswmaogv6e" path="res://sprite/UI/button J-3.png" id="55_kpu6q"]
-[ext_resource type="Texture2D" uid="uid://dkku4xjg0vqvs" path="res://sprite/UI/button J-4.png" id="56_fwssi"]
-[ext_resource type="Texture2D" uid="uid://dq20klqfrmq0y" path="res://sprite/UI/button L-1.png" id="57_7gjnn"]
-[ext_resource type="Script" path="res://script/menu.gd" id="58_ipga2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_12t6p"]
 animations = [{
@@ -223,31 +213,6 @@ animations = [{
 radius = 43.0
 height = 226.0
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_p2t8s"]
-frame_0/texture = ExtResource("49_oh88r")
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_58a0u"]
-frames = 3
-frame_0/texture = ExtResource("50_ket0t")
-frame_1/texture = ExtResource("51_2dgj8")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("52_76qpd")
-frame_2/duration = 1.0
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_g4akn"]
-frame_0/texture = ExtResource("53_fxleu")
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_iwman"]
-frames = 3
-frame_0/texture = ExtResource("54_m2yg3")
-frame_1/texture = ExtResource("55_kpu6q")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("56_fwssi")
-frame_2/duration = 1.0
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_usawv"]
-frame_0/texture = ExtResource("57_7gjnn")
-
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_7wxh6")
 FIREBALL = ExtResource("2_l5d5l")
@@ -266,55 +231,3 @@ shape = SubResource("CapsuleShape2D_gkh56")
 position = Vector2(93, -84)
 zoom = Vector2(0.3, 0.3)
 limit_bottom = 800
-
-[node name="Buttons" type="Control" parent="Camera2D"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 32.0
-offset_top = -26.0
-offset_right = 72.0
-offset_bottom = 14.0
-
-[node name="btnRight" type="TouchScreenButton" parent="Camera2D/Buttons"]
-z_index = 7
-position = Vector2(-618, 362)
-scale = Vector2(10, 10)
-texture_normal = SubResource("AnimatedTexture_p2t8s")
-texture_pressed = SubResource("AnimatedTexture_58a0u")
-action = "move_right"
-
-[node name="btnJump" type="TouchScreenButton" parent="Camera2D/Buttons"]
-z_index = 7
-position = Vector2(631, 362)
-scale = Vector2(10, 10)
-texture_normal = SubResource("AnimatedTexture_g4akn")
-texture_pressed = SubResource("AnimatedTexture_iwman")
-action = "jump"
-
-[node name="btnRight2" type="TouchScreenButton" parent="Camera2D/Buttons"]
-z_index = 7
-position = Vector2(-923, 362)
-scale = Vector2(10, 10)
-texture_normal = SubResource("AnimatedTexture_p2t8s")
-texture_pressed = SubResource("AnimatedTexture_58a0u")
-action = "move_left"
-
-[node name="Button" type="Button" parent="Camera2D/Buttons"]
-layout_mode = 0
-offset_left = -923.0
-offset_top = -436.0
-offset_right = -902.0
-offset_bottom = -415.0
-scale = Vector2(6, 6)
-icon = SubResource("AnimatedTexture_usawv")
-script = ExtResource("58_ipga2")
-
-[node name="FireSpawnPointRight" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(100, 15)
-
-[node name="FireSpawnPointLeft" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-100, 15)
-
-[connection signal="pressed" from="Camera2D/Buttons/Button" to="." method="_on_button_pressed"]

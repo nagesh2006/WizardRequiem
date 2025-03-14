@@ -63,8 +63,7 @@ func killPlayer():
 	anim.flip_h = false
 	
 
-func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Assets/scene/options_menu.tscn")
+
 
 
 func _on_death_zone_body_entered(body: Node2D) -> void:
