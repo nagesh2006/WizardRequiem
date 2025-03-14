@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dyf8brx13inx4"]
+[gd_scene load_steps=35 format=3 uid="uid://dyf8brx13inx4"]
 
 [ext_resource type="Script" path="res://script/enemy_1.gd" id="1_qcqoc"]
 [ext_resource type="Texture2D" uid="uid://d1b7l44t6yc7m" path="res://sprite/SlimeOrange/SlimeOrange_00000.png" id="1_qyaii"]
@@ -133,7 +133,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_pddha"]
 radius = 96.0208
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_iyap5"]
+radius = 97.1288
+
 [node name="enemy1" type="CharacterBody2D"]
+collision_layer = 64
 script = ExtResource("1_qcqoc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -144,10 +148,15 @@ frame_progress = 0.425665
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="enemyHere" type="Area2D" parent="."]
+collision_layer = 64
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemyHere"]
 position = Vector2(-1, 25)
 shape = SubResource("CircleShape2D_pddha")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 25)
+shape = SubResource("CircleShape2D_iyap5")
+
+[connection signal="body_entered" from="enemyHere" to="." method="_on_area_2d_body_entered"]

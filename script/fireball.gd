@@ -1,16 +1,23 @@
-extends CharacterBody2D
+class_name Fireball
+extends Area2D
 
-@export var SPEED = 2000
+@export var move_speed = 900.0
 
-var direction : float
-var pos : Vector2
+@onready var anim = $AnimatedSprite2D
 
-func _ready() -> void:
-	global_position = pos
-	
-func _physics_process(delta: float) -> void:
-	
-	
-	velocity = Vector2(SPEED, 0).rotated(direction)
-	# Call the move_and_slide() function without arguments
-	move_and_slide()
+var direction = 1
+
+func _process(delta: float) -> void:
+	if direction == -1:
+		anim.flip_h = true
+	else :
+		anim.flip_h = false
+	position.x += move_speed * delta * direction
+
+
+func _on_body_entered(body: Node2D) -> void:
+	print(body.name)
+	if body is killableEnemy:
+		body.kill_enemy()
+		body.queue_free()
+	queue_free()

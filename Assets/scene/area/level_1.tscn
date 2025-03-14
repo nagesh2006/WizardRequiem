@@ -532,4 +532,7 @@ position = Vector2(17825, -66)
 [node name="enemy6" parent="enemies" instance=ExtResource("7_0xp12")]
 position = Vector2(23076, -56)
 
+[node name="fireballs" type="Node" parent="."]
+unique_name_in_owner = true
+
 [connection signal="body_entered" from="deathZone" to="player" method="_on_death_zone_body_entered"]

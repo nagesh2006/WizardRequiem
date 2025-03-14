@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://3q3g5d3kr8wl"]
+[gd_scene load_steps=67 format=3 uid="uid://3q3g5d3kr8wl"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_7wxh6"]
 [ext_resource type="Texture2D" uid="uid://ef3gaf1pir2o" path="res://sprite/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00000.png" id="1_hvmef"]
 [ext_resource type="Texture2D" uid="uid://dijc1tue20cx6" path="res://sprite/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00001.png" id="2_7aeu8"]
+[ext_resource type="PackedScene" uid="uid://b6gftbe1j61mm" path="res://Assets/scene/fireball.tscn" id="2_l5d5l"]
 [ext_resource type="Texture2D" uid="uid://c4p7rumgyjq2n" path="res://sprite/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00002.png" id="3_l3kk8"]
 [ext_resource type="Texture2D" uid="uid://g63ib8ygfhy1" path="res://sprite/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00003.png" id="4_s0sm5"]
 [ext_resource type="Texture2D" uid="uid://chjhkg33s04hf" path="res://sprite/BlueWizard/2BlueWizardIdle/Chara - BlueIdle00004.png" id="5_46wji"]
@@ -214,6 +215,7 @@ height = 226.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_7wxh6")
+FIREBALL = ExtResource("2_l5d5l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 8)
@@ -227,5 +229,5 @@ shape = SubResource("CapsuleShape2D_gkh56")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(93, -84)
-zoom = Vector2(0.535, 0.535)
+zoom = Vector2(0.3, 0.3)
 limit_bottom = 800
