@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name killableEnemy extends CharacterBody2D
 
 @onready var ray_cast = $RayCast2D
 
@@ -29,3 +29,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "player":
 		body.killPlayer()
 	
+func kill_enemy() :
+	GameManager.coins += 100
+	print(GameManager.coins)
+	queue_free()

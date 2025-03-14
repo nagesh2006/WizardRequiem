@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxjr8va7pbdkg" path="res://sprite/extra/fire spell/FB004.png" id="4_70nqh"]
 [ext_resource type="Texture2D" uid="uid://cxsqcr7diul56" path="res://sprite/extra/fire spell/FB005.png" id="5_8royg"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bj1vn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4884b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -30,20 +30,22 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8lb5b"]
-radius = 7.5
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v5ho"]
+radius = 8.06877
 
-[node name="fireball" type="CharacterBody2D"]
-motion_mode = 1
-wall_min_slide_angle = 0.382227
+[node name="fireball" type="Area2D"]
+collision_mask = 64
 script = ExtResource("1_3xw6d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-11, 2)
-sprite_frames = SubResource("SpriteFrames_bj1vn")
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_4884b")
 autoplay = "default"
-frame_progress = 0.12681
+frame_progress = 0.306015
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1.33333, 1.10972)
-shape = SubResource("CircleShape2D_8lb5b")
+position = Vector2(61, -10)
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_5v5ho")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
