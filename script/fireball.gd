@@ -1,5 +1,4 @@
-class_name Fireball
-extends Area2D
+class_name Fireball extends Area2D
 
 @export var move_speed = 900.0
 

@@ -149,7 +149,8 @@ frame_progress = 0.425665
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="enemyHere" type="Area2D" parent="."]
-collision_layer = 64
+scale = Vector2(1.67367, 1.07432)
+collision_layer = 65
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemyHere"]
 position = Vector2(-1, 25)
