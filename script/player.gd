@@ -12,6 +12,11 @@ const JUMP_VELOCITY = -1900.0
 @onready var fireball_container = %fireballs
 @onready var anim = $AnimatedSprite2D
 @onready var respawn_point = %SpawnPoint
+@onready var heart = %heart
+
+var health_list : Array[TextureRect]
+var health = 3
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -57,14 +62,33 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 	
+func _ready() -> void:
+	var hearts_present = $heart/HBoxContainer
+	for child in heart.get_childern():
+		health_list.append(child)
+	print(health_list)
+		
+		
+func take_damage():
+	if health > 0:
+		health -= 1
+		update_heart_display()
+		
+func update_heart_display():
+	for i in range (health_list.size()):
+		health_list[i].visible = i < health
+		
+	#if health <= 0 :
+		#alive = false
+		#killplayer()
+		
+	
 	
 func killPlayer():
 	position = respawn_point.position
 	anim.flip_h = false
 	
-
-
-
-
 func _on_death_zone_body_entered(body: Node2D) -> void:
-	killPlayer()
+	health -= 1
+	if health <= 0:
+		killPlayer()

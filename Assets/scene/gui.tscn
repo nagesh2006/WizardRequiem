@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cvg4n3y7qxr3h"]
+[gd_scene load_steps=33 format=3 uid="uid://cvg4n3y7qxr3h"]
 
 [ext_resource type="Texture2D" uid="uid://dpbbl6idvl4g7" path="res://sprite/extra/spin_coin_big_strip6.png" id="1_4agwf"]
 [ext_resource type="Texture2D" uid="uid://c1074etu5obgc" path="res://sprite/UI/buttonAR-1.png" id="2_38f7p"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://bv43hcnnu2c6l" path="res://sprite/UI/button M-1.png" id="12_ajmxr"]
 [ext_resource type="Texture2D" uid="uid://dbjd2ucepcy8l" path="res://sprite/UI/button M-2.png" id="13_x78u4"]
 [ext_resource type="Texture2D" uid="uid://w3yh766pcory" path="res://sprite/UI/Button M-4.png" id="14_6k3n5"]
+[ext_resource type="Script" path="res://script/player.gd" id="16_5pboc"]
+[ext_resource type="Texture2D" uid="uid://ml57vf2hrkoy" path="res://sprite/UI/Heart-F.png" id="16_8vtya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mveht"]
 atlas = ExtResource("1_4agwf")
@@ -104,6 +106,17 @@ frame_1/duration = 1.0
 frame_2/texture = ExtResource("14_6k3n5")
 frame_2/duration = 1.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtvvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_8vtya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="GUI" type="CanvasLayer"]
 
 [node name="coinValue" type="Label" parent="."]
@@ -163,4 +176,39 @@ scale = Vector2(6, 6)
 icon = SubResource("AnimatedTexture_0nqxf")
 script = ExtResource("11_htykj")
 
+[node name="heart" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("16_5pboc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="heart"]
+offset_left = 828.0
+offset_top = 61.0
+offset_right = 1016.0
+offset_bottom = 101.0
+
+[node name="TextureRect" type="TextureRect" parent="heart/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="heart/HBoxContainer/TextureRect"]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_mtvvd")
+
+[node name="TextureRect2" type="TextureRect" parent="heart/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="heart/HBoxContainer/TextureRect2"]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_mtvvd")
+
+[node name="TextureRect3" type="TextureRect" parent="heart/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="heart/HBoxContainer/TextureRect3"]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_mtvvd")
+
 [connection signal="pressed" from="Buttons/Button" to="Buttons/Button" method="_on_pressed"]
+[connection signal="ready" from="heart" to="heart" method="_ready"]
